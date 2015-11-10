@@ -1,31 +1,28 @@
 window.onload = function() {
-	var another = true;
-	var results = document.getElementById("results");
-	while(another){
-		var num1 = null, num2 = null, stepNum = null;
-		while (num1 == null){
-			num1 = window.prompt("Input first number: ", "");
-		}
-		while (num2 == null){
-			num2 = window.prompt("Input second number: ", "");
-		}
-		while (stepNum == null){
-			stepNum = window.prompt("Input step number: ", "3");
-		}
-		var nums = interp(num1, num2, stepNum);
+	document.getElementById("interpolate").onsubmit = function() {
+		var results = document.getElementById("results")
+		var num1 = document.getElementById("num1").value;
+		var num2 = document.getElementById("num2").value;
+		var stepNum = document.getElementById("step-num").value;
+
+		var nums = interpolate(num1, num2, stepNum);
 
 		var result = document.createElement("p");
-		var textResult = document.createTextNode(nums);
+		var numsText = "", numsLength = nums.length;
+		for (var i=0; i<numsLength; i++) {
+			numsText += nums[i];
+			if (i !== numsLength-1){
+				numsText += ", "
+			}
+		}
+		var textResult = document.createTextNode(numsText);
 		result.appendChild(textResult);
 
 		document.getElementById("results").appendChild(result);
+	};
+};
 
-		another = window.confirm("The sequence of numbers is:\n\n"+nums+"\n\nTo interpolate between more numbers, hit OK, otherwise hit Cancel");
-	}
-}
-
-
-function interp(num1, num2, stepNum) {
+function interpolate(num1, num2, stepNum) {
 	var d = num2-num1;
 	var step = d/stepNum;
 	var nums = [num1];
@@ -35,4 +32,4 @@ function interp(num1, num2, stepNum) {
 	}
 	nums.push(num2);
 	return nums
-
+}
