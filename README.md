@@ -24,9 +24,9 @@ Output: 0, 4, 8, 12
 The script will work with floating point numbers as well as integers and will output the numbers based on the order that the extremes were put in.
 If you ask for `3` steps between `12.5` and `2` the following will happen:
 ```
-          1st         2nd        3rd
-|----------v-----------v----------v
-12         9          5.5         2
+            1st         2nd        3rd
+  |----------v-----------v----------v
+12.5         9          5.5         2
 
 Output: 12.5, 9, 5.5, 2
 ```
